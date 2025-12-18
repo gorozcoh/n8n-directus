@@ -2,10 +2,9 @@ FROM n8nio/n8n:2.0.2
 
 USER root
 RUN apk --update add python3 make g++  # Dependencias para npm builds
+RUN npm install -g npm@latest  # Actualiza npm para evitar issues
+RUN npm install -g @directus/n8n-nodes-directus @docuseal/n8n-nodes-docuseal  # Instala como root
 USER node
-
-# Instala los nodos de la comunidad especificados
-RUN npm install -g @directus/n8n-nodes-directus @docuseal/n8n-nodes-docuseal
 
 # Configuración básica de n8n (opcional, ajusta según necesidades)
 ENV N8N_BASIC_AUTH_ACTIVE=true
